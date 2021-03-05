@@ -58,3 +58,13 @@ best
 lasso_cv_new <- glmnet(X_matrix, Y, alpha=1, lambda=best)
 coef(lasso_cv_new)
 
+
+#fitting the new model
+lm.fit<-lm(Y~I(X^2)+I(X^3)+I(X^4), data=data)
+summary(lm.fit)
+
+plot(X,Y)
+aRng = range(X)
+a_predict = seq( from=aRng[1], to=aRng[2], length.out=100 )
+w_predict = predict( lm.fit, newdata=list( X=a_predict ) )
+lines( a_predict, w_predict, col='red' )
